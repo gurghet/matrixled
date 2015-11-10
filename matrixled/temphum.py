@@ -1,4 +1,5 @@
-import pigpio, DHT22
+import pigpio
+import DHT22
 
 
 def pi():

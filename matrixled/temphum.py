@@ -1,5 +1,5 @@
 import pigpio
-import DHT22
+from pygpiodht22 import DHT22
 
 
 def pi():

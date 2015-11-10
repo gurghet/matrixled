@@ -2,7 +2,8 @@ from PIL import Image, ImageDraw, ImageFont
 from rgbmatrix import RGBMatrix
 import time, sys
 import random
-import temphum
+from PIGPIO import pigpio
+from pygpiodht22 import DHT22
 
 pilImage = Image.new("RGB", (32, 32))
 draw = ImageDraw.Draw(pilImage)
@@ -18,8 +19,8 @@ def next_frame():
 
 def get_temp_hum():
     sys.path.append('/home/pi/pygpiodht22')
-    pi = temphum.pi()
-    s = temphum.sensor(pi, 6)
+    pi = pigpio.pi()
+    s = DHT22.sensor(pi, 6)
     s.trigger()
     time.sleep(0.2)
     ret_val = (s.temperature(), s.humidity())

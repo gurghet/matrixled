@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from PIL import Image, ImageDraw, ImageFont
 from rgbmatrix import RGBMatrix
 import time, sys
@@ -13,8 +15,11 @@ m = RGBMatrix(32)
 
 def next_frame():
     draw.rectangle((0, 0, 31, 31), fill=(0, 0, 0), outline=(0, 0, 0))
-    font = ImageFont.truetype('font/alterebro-pixel-font.ttf', 16)
-    draw.text((0, 0), "hello %(temp)f.1 c\n on 2 lines" % {"temp": get_temp_hum()[0]},
+    font = ImageFont.truetype('../font/alterebro-pixel-font.ttf', 16)
+    (temp, hum) = get_temp_hum()
+    draw.text((3, 2), "%(temp).1f\xb0C" % {"temp": temp},
+              fill=(255, 255, 0), font=font)
+    draw.text((4, 12), "%(hum).1f%%" % {"hum": hum},
               fill=(255, 255, 0), font=font)
 
 

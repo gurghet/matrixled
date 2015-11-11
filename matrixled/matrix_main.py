@@ -18,7 +18,6 @@ def next_frame():
 
 
 def get_temp_hum():
-    sys.path.append('/home/pi/pygpiodht22')
     pi = pigpio.pi()
     s = DHT22.sensor(pi, 6)
     s.trigger()

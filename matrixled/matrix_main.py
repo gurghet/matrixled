@@ -2,6 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 from rgbmatrix import RGBMatrix
 import time, sys
 import random
+sys.path.append('..')
 from PIGPIO import pigpio
 from pygpiodht22 import DHT22
 

@@ -13,8 +13,8 @@ m = RGBMatrix(32)
 
 def next_frame():
     draw.rectangle((0, 0, 31, 31), fill=(0, 0, 0), outline=(0, 0, 0))
-    font = ImageFont.truetype('font/alterebro-pixel-font.ttf', 12)
-    draw.text((0, 0), "hello this is a test string\n on 2 lines",
+    font = ImageFont.truetype('font/alterebro-pixel-font.ttf', 16)
+    draw.text((0, 0), "hello %(temp)f.1 c\n on 2 lines" % {"temp": get_temp_hum()[0]},
               fill=(255, 255, 0), font=font)
 
 

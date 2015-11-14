@@ -2,6 +2,10 @@
 
 # 2014-07-11 DHT22.py
 
+import time
+
+import pigpio
+
 class sensor:
    """
    A class to read relative humidity and temperature from the

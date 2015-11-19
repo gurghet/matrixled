@@ -3,11 +3,9 @@ import requests
 
 def get_temp_hum():
     r = requests.get(
-        "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.fore"
-        "cast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%2"
-        "0text%3D%22Genova%22)%20and%20u%3D'c'&format=json&env=store%3A%2F%2Fdatatabl"
-        "es.org%2Falltableswithkeys")
+        "http://api.wunderground.com/api/2e7c13d800eac2d7/conditions/q/pws:IGENOVA70.json")
 
-    channel = r.json()['query']['results']['channel']
-
-    return channel['item']['condition']['temp'], channel['atmosphere']['humidity']
+    current = r.json()['current_observation']
+    e_temp = current['temp_c']
+    e_hum = current['relative_humidity']
+    return e_temp, e_hum

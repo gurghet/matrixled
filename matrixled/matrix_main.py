@@ -8,8 +8,6 @@ from pygpiodht22 import DHT22
 from PIL import Image, ImageDraw, ImageFont
 from rgbmatrix import RGBMatrix
 
-
-
 def main():
     pilImage = Image.new("RGB", (32, 32))
     draw = ImageDraw.Draw(pilImage)
@@ -23,21 +21,24 @@ def main():
                 c = pilImage.getpixel((x, y))
                 nf.SetPixel(x, y, c[0], c[1], c[2])
         m.SwapOnVSync(nf)
-        time.sleep(4)
+        time.sleep(180)
     
 
 def next_frame(draw):
+    (temp, hum) = get_temp_hum()
+    (e_temp, e_hum) = ext_temp.get_temp_hum()
+    
     draw.rectangle((0, 0, 31, 31), fill=(0, 0, 0), outline=(0, 0, 0))
     font = ImageFont.truetype('../font/alterebro-pixel-font.ttf', 16)
     minifont = ImageFont.truetype('../font/Rygarde.ttf', 8)
 
-    draw.text((9, 0), "%(temp)d" % {"temp": e_temp},
+    draw.text((3, 0), "%(temp).1f" % {"temp": e_temp},
               fill=(255, 153, 0), font=minifont)
     draw.text((3, 4), "%(temp).1f\xb0C" % {"temp": temp},
               fill=(255, 255, 0), font=font)
     draw.text((4, 12), "%(hum).1f%%" % {"hum": hum},
               fill=(255, 255, 0), font=font)
-    draw.text((9, 26), "%(hum)d" % {"hum": e_hum},
+    draw.text((6, 25), "%(hum)s" % {"hum": e_hum},
               fill=(255, 153, 0), font=minifont)
 
 
